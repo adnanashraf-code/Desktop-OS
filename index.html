@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mini Desktop OS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Desktop -->
+    <div class="desktop" id="desktop">
+      <!-- Desktop Icons -->
+      <div class="icon" data-app="computer">
+        <img src="https://cdn-icons-png.flaticon.com/512/179/179386.png" />
+        <p>My Computer</p>
+      </div>
+
+      <div class="icon" data-app="folder">
+        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" />
+        <p>Documents</p>
+      </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+      <div class="taskbar-icons">
+        <i class="ri-windows-fill"></i>
+        <i class="ri-layout-grid-fill"></i>
+        <i class="ri-settings-3-fill"></i>
+        <i class="ri-google-fill"></i>
+        <i class="ri-folder-fill"></i>
+        <i class="ri-chrome-fill"></i>
+        <i class="ri-code-s-slash-fill"></i>
+        <i class="ri-github-fill"></i>
+         <i class="ri-edge-new-fill"></i>
+        <i class="ri-terminal-box-fill"></i>
+        <i class="ri-whatsapp-fill"></i>
+        <i class="ri-mail-fill"></i>
+        <i class="ri-discord-fill"></i>
+        <i class="ri-xbox-fill"></i>
+      </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+      <p>My Computer</p>
+      <p>Documents</p>
+      <p>Settings</p>
+    </div>
+
+    <!-- Right Click Menu -->
+    <div class="context-menu" id="contextMenu">
+      <p>View</p>
+      <p id="refresh">Refresh</p>
+      <p>New Folder</p>
+    </div>
+
+    <!-- Window Container -->
+    <div id="windows"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
