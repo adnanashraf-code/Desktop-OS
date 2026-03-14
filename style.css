@@ -1,130 +1,674 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:sans-serif;
 }
 
-body {
-  height: 100vh;
-  overflow: hidden;
+body{
+height:100vh;
+overflow:hidden;
 }
 
-.desktop {
-  height: 100vh;
-  background: url("https://wallpaperaccess.com/full/317501.jpg");
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  gap: 20px;
+/* DESKTOP */
+
+.desktop{
+
+height:100vh;
+
+background:url("./assets/sung-jinwoo-dope-3840x2160-20241.jpg");
+background-size:cover;
+background-position:center;
+
+display:grid;
+grid-template-columns:repeat(1,100px);
+grid-auto-rows:100px;
+
+gap:15px;
+padding:20px;
+
 }
 
-.icon {
-  width: 80px;
-  text-align: center;
-  color: white;
-  cursor: pointer;
+/* DESKTOP ICON */
+
+.icon{
+
+width:90px;
+
+text-align:center;
+
+color:white;
+
+cursor:pointer;
+
+padding:5px;
+
+border-radius:6px;
+
+transition:0.2s;
+
 }
 
-.icon img {
-  width: 50px;
+.icon img{
+
+width:48px;
+height:48px;
+
 }
 
-.icon p {
-  font-size: 14px;
-  margin-top: 5px;
+.icon p{
+
+margin-top:5px;
+font-size:14px;
+
 }
 
-.taskbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-}
-.taskbar-icons {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: #111;
-  padding: 8px 15px;
+.icon:hover{
+
+background:rgba(255,255,255,0.15);
+
 }
 
-.taskbar-icons i {
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s;
+.icon:active{
+
+background:rgba(255,255,255,0.25);
+
 }
 
-.taskbar-icons i:hover {
-  transform: scale(1.2);
-  color: #4da6ff;
+/* TASKBAR */
+
+.taskbar{
+
+position:fixed;
+
+bottom:0;
+left:0;
+
+width:100%;
+height:50px;
+
+background:#111;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
 }
 
-.clock {
-  margin-left: auto;
-  color: white;
+.taskbar-icons{
+
+display:flex;
+align-items:center;
+
+gap:15px;
+
 }
 
-.start-menu {
-  position: fixed;
-  bottom: 40px;
-  left: 10px;
-  background: #222;
-  color: white;
-  padding: 10px;
-  display: none;
-  width: 150px;
+.taskbar-icons i{
+
+font-size:1.5rem;
+
+color:white;
+
+cursor:pointer;
+
+transition:0.2s ease;
+
 }
 
-.start-menu p {
-  padding: 5px;
-  cursor: pointer;
+.taskbar-icons i:hover{
+
+transform:scale(1.2);
+color:#4da6ff;
+
 }
 
-.start-menu p:hover {
-  background: #444;
+/* START PANEL */
+
+.start-panel{
+
+position:fixed;
+
+bottom:70px;
+left:50%;
+
+transform:translateX(-50%) scale(0.9);
+
+width:820px;
+height:620px;
+
+background:rgba(30,30,30,0.55);
+
+backdrop-filter:blur(25px);
+
+border-radius:12px;
+
+padding:20px;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.25s;
+
+z-index:9999;
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:0 20px 50px rgba(0,0,0,0.7);
+
+overflow:hidden;
+
 }
 
-.context-menu {
-  position: absolute;
-  background: #222;
-  color: white;
-  padding: 10px;
-  display: none;
+.start-panel.active{
+
+transform:translateX(-50%) scale(1);
+
+opacity:1;
+pointer-events:auto;
+
 }
 
-.context-menu p {
-  padding: 5px;
-  cursor: pointer;
+/* SEARCH */
+
+.start-search input{
+
+width:100%;
+
+padding:8px;
+
+border:none;
+
+border-radius:20px;
+
+margin-bottom:15px;
+
 }
 
-.context-menu p:hover {
-  background: #444;
+/* APPS GRID */
+
+.start-apps{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:14px;
+
+max-height:240px;
+
+overflow:hidden;
+
 }
 
-.window {
-  position: absolute;
-  width: 300px;
-  height: 200px;
-  background: white;
-  border: 2px solid black;
-  top: 100px;
-  left: 200px;
+.start-app{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+color:white;
+
+cursor:pointer;
+
+padding:8px;
+
+border-radius:8px;
+
+transition:0.2s;
+
 }
 
-.titlebar {
-  background: #333;
-  color: white;
-  padding: 5px;
-  cursor: move;
-  display: flex;
-  justify-content: space-between;
+.start-app img{
+
+width:38px;
+height:38px;
+
+object-fit:contain;
+
+}
+
+.start-app:hover{
+
+background:#333;
+transform:scale(1.05);
+
+}
+
+.start-app p{
+
+font-size:13px;
+margin-top:5px;
+
+}
+
+/* START FOOTER */
+
+.start-footer{
+
+position:absolute;
+
+bottom:0;
+left:0;
+
+width:100%;
+height:60px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:10px 20px;
+
+border-top:1px solid rgba(255,255,255,0.08);
+
+background:rgba(255,255,255,0.02);
+
+}
+
+/* USER INFO */
+
+.user-info{
+
+display:flex;
+align-items:center;
+
+gap:10px;
+
+color:white;
+
+cursor:pointer;
+
+padding:4px 6px;
+
+border-radius:6px;
+
+transition:0.2s;
+
+}
+
+.user-info:hover{
+
+background:rgba(255,255,255,0.08);
+
+}
+
+.user-img{
+
+width:35px;
+height:35px;
+
+border-radius:50%;
+
+}
+
+/* FOOTER ICONS */
+
+.footer-icons{
+
+display:flex;
+align-items:center;
+
+gap:18px;
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+}
+
+.footer-icons i{
+
+transition:0.2s;
+
+}
+
+.footer-icons i:hover{
+
+color:#4da6ff;
+transform:scale(1.1);
+
+}
+
+/* POWER BUTTON */
+
+.power-btn{
+
+font-size:22px;
+
+padding:6px;
+
+border-radius:6px;
+
+transition:0.2s;
+
+}
+
+.power-btn:hover{
+
+background:rgba(255,255,255,0.1);
+
+}
+
+/* POWER MENU */
+
+.power-menu-container{
+
+position:relative;
+
+display:flex;
+align-items:center;
+
+}
+
+.power-menu{
+
+position:absolute;
+
+bottom:45px;
+right:0;
+
+background:rgba(40,40,40,0.8);
+
+backdrop-filter:blur(10px);
+
+border-radius:8px;
+
+width:140px;
+
+display:none;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+
+}
+
+.power-menu p{
+
+padding:8px 12px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.power-menu p:hover{
+
+background:#333;
+
+}
+
+/* WINDOWS */
+
+.window{
+
+position:absolute;
+
+width:400px;
+height:250px;
+
+background:white;
+
+border-radius:6px;
+
+overflow:hidden;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+
+animation:openWindow 0.15s ease;
+
+}
+
+.titlebar{
+
+background:#1f2937;
+
+color:white;
+
+padding:8px 10px;
+
+display:flex;
+justify-content:space-between;
+
+cursor:grab;
+
+}
+
+.titlebar:active{
+cursor:grabbing;
+}
+
+.titlebar button{
+
+background:red;
+
+border:none;
+color:white;
+
+width:22px;
+height:22px;
+
+cursor:pointer;
+
+border-radius:4px;
+
+}
+
+.window-content{
+padding:15px;
+}
+
+@keyframes openWindow{
+
+from{
+transform:scale(0.9);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+/* CONTEXT MENU */
+
+.context-menu{
+
+position:absolute;
+
+background:rgba(40,40,40,0.65);
+
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+
+color:white;
+
+width:280px;
+
+border-radius:8px;
+
+display:none;
+
+padding:8px 0;
+
+z-index:9999;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.6);
+
+font-size:14px;
+
+border:1px solid rgba(255,255,255,0.08);
+
+animation:menuOpen 0.12s ease;
+
+}
+
+@keyframes menuOpen{
+
+from{
+opacity:0;
+transform:scale(0.95);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+/* MENU ITEMS */
+
+.menu-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:8px 15px;
+
+cursor:pointer;
+
+position:relative;
+
+}
+
+.menu-item:hover{
+
+background:rgba(255,255,255,0.08);
+
+}
+
+/* SUBMENU */
+
+.submenu{
+
+position:absolute;
+
+top:0;
+
+left:100%;
+
+background:rgba(40,40,40,0.85);
+
+backdrop-filter:blur(10px);
+
+width:220px;
+
+border-radius:8px;
+
+display:none;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.6);
+
+}
+
+.submenu p{
+
+padding:8px 15px;
+
+}
+
+.submenu p:hover{
+
+background:#444;
+
+}
+
+.menu-item:hover .submenu{
+
+display:block;
+
+}
+
+/* NORMAL MENU ITEMS */
+
+.context-menu p{
+
+padding:8px 15px;
+
+cursor:pointer;
+
+}
+
+.context-menu p:hover{
+
+background:rgba(255,255,255,0.08);
+
+}
+
+hr{
+
+border:0.5px solid #555;
+
+margin:5px 0;
+
+}
+
+/* RESPONSIVE */
+
+/* LAPTOP */
+
+@media(max-width:1200px){
+
+.start-panel{
+
+width:480px;
+height:380px;
+
+}
+
+}
+
+/* TABLET */
+
+@media(max-width:900px){
+
+.start-panel{
+
+width:380px;
+height:350px;
+
+}
+
+.start-apps{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+.taskbar-icons{
+
+gap:12px;
+
+}
+
+}
+
+/* SMALL TABLET */
+
+@media(max-width:700px){
+
+.start-panel{
+
+width:320px;
+height:320px;
+
+}
+
+.start-apps{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
 }
