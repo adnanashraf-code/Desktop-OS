@@ -16,38 +16,35 @@ let activeWindow = null;
 let offsetX = 0;
 let offsetY = 0;
 
-/* ---------------- DESKTOP ICON DOUBLE CLICK ---------------- */
+/* -------- ICON DOUBLE CLICK -------- */
 
 icons.forEach((icon) => {
   icon.addEventListener("dblclick", () => {
-    const appName = icon.dataset.app;
-    openWindow(appName);
+    openWindow(icon.dataset.app);
   });
 });
 
-/* ---------------- CREATE WINDOW ---------------- */
+/* -------- WINDOW CONTENT MAP -------- */
+
+const appContent = {
+  computer: "<h3>This PC</h3><p>System files and drives</p>",
+  folder: "<h3>Documents</h3><p>Your saved files appear here</p>",
+};
+
+/* -------- CREATE WINDOW -------- */
 
 function openWindow(app) {
   const win = document.createElement("div");
 
-  win.classList.add("window");
+  win.className = "window";
 
   win.style.top = 120 + Math.random() * 120 + "px";
   win.style.left = 200 + Math.random() * 200 + "px";
   win.style.zIndex = zIndex++;
 
-  let content = "";
-
-  if (app === "computer") {
-    content = "<h3>This PC</h3><p>System files and drives</p>";
-  }
-
-  if (app === "folder") {
-    content = "<h3>Documents</h3><p>Your saved files appear here</p>";
-  }
+  const content = appContent[app] || "<p>App not found</p>";
 
   win.innerHTML = `
-
 <div class="titlebar">
 <span>${app}</span>
 <button class="close">X</button>
@@ -56,45 +53,38 @@ function openWindow(app) {
 <div class="window-content">
 ${content}
 </div>
-
 `;
 
   windowsContainer.appendChild(win);
 }
 
-/* ---------------- CLOSE WINDOW ---------------- */
-
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("close")) {
-    e.target.closest(".window").remove();
-  }
-});
-
-/* ---------------- WINDOW DRAG ---------------- */
+/* -------- WINDOW DRAG -------- */
 
 document.addEventListener("mousedown", (e) => {
-  if (e.target.classList.contains("titlebar")) {
-    activeWindow = e.target.parentElement;
+  const titlebar = e.target.closest(".titlebar");
 
-    activeWindow.style.zIndex = zIndex++;
+  if (!titlebar) return;
 
-    offsetX = e.clientX - activeWindow.offsetLeft;
-    offsetY = e.clientY - activeWindow.offsetTop;
-  }
+  activeWindow = titlebar.parentElement;
+
+  activeWindow.style.zIndex = zIndex++;
+
+  offsetX = e.clientX - activeWindow.offsetLeft;
+  offsetY = e.clientY - activeWindow.offsetTop;
 });
 
 document.addEventListener("mousemove", (e) => {
-  if (activeWindow) {
-    activeWindow.style.left = e.clientX - offsetX + "px";
-    activeWindow.style.top = e.clientY - offsetY + "px";
-  }
+  if (!activeWindow) return;
+
+  activeWindow.style.left = e.clientX - offsetX + "px";
+  activeWindow.style.top = e.clientY - offsetY + "px";
 });
 
 document.addEventListener("mouseup", () => {
   activeWindow = null;
 });
 
-/* ---------------- RIGHT CLICK MENU ---------------- */
+/* -------- RIGHT CLICK MENU -------- */
 
 desktop.addEventListener("contextmenu", (e) => {
   e.preventDefault();
@@ -122,29 +112,23 @@ desktop.addEventListener("contextmenu", (e) => {
   menu.style.top = posY + "px";
 });
 
-/* ---------------- START MENU ---------------- */
+/* -------- START MENU -------- */
 
 startBtn.addEventListener("click", (e) => {
   e.stopPropagation();
-
   startPanel.classList.toggle("active");
 });
 
-/* ---------------- TASKBAR LINKS ---------------- */
+/* -------- TASKBAR LINKS -------- */
 
-document.addEventListener("DOMContentLoaded", function () {
-  taskLinks.forEach((icon) => {
-    icon.addEventListener("click", (e) => {
-      e.stopPropagation();
-
-      const link = icon.dataset.link;
-
-      window.open(link, "_blank");
-    });
+taskLinks.forEach((icon) => {
+  icon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.open(icon.dataset.link, "_blank");
   });
 });
 
-/* ---------------- POWER MENU ---------------- */
+/* -------- POWER MENU -------- */
 
 powerBtn.addEventListener("click", (e) => {
   e.stopPropagation();
@@ -153,30 +137,30 @@ powerBtn.addEventListener("click", (e) => {
     powerMenu.style.display === "block" ? "none" : "block";
 });
 
-/* ---------------- POWER OPTIONS ---------------- */
+/* -------- POWER OPTIONS -------- */
 
 document.querySelectorAll(".power-menu p").forEach((item) => {
   item.addEventListener("click", () => {
     const action = item.innerText;
 
-    if (action === "Restart") {
-      location.reload();
-    }
+    if (action === "Restart") location.reload();
 
     if (action === "Shut down") {
       document.body.innerHTML =
         "<div style='background:black;color:white;height:100vh;display:flex;align-items:center;justify-content:center;font-size:30px'>Shutting Down...</div>";
     }
 
-    if (action === "Sleep") {
-      alert("Sleep Mode Activated");
-    }
+    if (action === "Sleep") alert("Sleep Mode Activated");
   });
 });
 
-/* ---------------- GLOBAL CLICK HANDLER ---------------- */
+/* -------- GLOBAL CLICK -------- */
 
 document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("close")) {
+    e.target.closest(".window").remove();
+  }
+
   menu.style.display = "none";
 
   if (!startPanel.contains(e.target) && !startBtn.contains(e.target)) {
