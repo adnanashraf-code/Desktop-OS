@@ -91,6 +91,27 @@ body {
   color: var(--hover-blue);
 }
 
+.system-tray {
+  position: absolute;
+  right: 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  color: white;
+  font-size: 18px;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  font-size: 12px;
+  line-height: 1.2;
+}
 .start-panel {
   position: fixed;
   bottom: 4.3rem;

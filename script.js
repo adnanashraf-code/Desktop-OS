@@ -180,3 +180,23 @@ document.addEventListener("click", (e) => {
     powerMenu.style.display = "none";
   }
 });
+const timeEl = document.getElementById("time");
+const dateEl = document.getElementById("date");
+
+function updateClock() {
+  const now = new Date();
+
+  const timeString = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const dateString = now.toLocaleDateString("en-GB");
+
+  timeEl.textContent = timeString;
+  dateEl.textContent = dateString;
+}
+
+updateClock();
+
+setInterval(updateClock, 1000);
