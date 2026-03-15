@@ -146,10 +146,19 @@ document.querySelectorAll(".power-menu p").forEach((item) => {
     if (action === "Restart") location.reload();
 
     if (action === "Shut down") {
-      document.body.innerHTML =
-        "<div style='background:black;color:white;height:100vh;display:flex;align-items:center;justify-content:center;font-size:30px'>Shutting Down...</div>";
-    }
+      document.body.innerHTML = `
+  <div class="shutdown-screen">
+    <div class="loader"></div>
+    <h2>Shutting down</h2>
+  </div>
+  `;
 
+      setTimeout(() => {
+        document.body.innerHTML = `
+    <div style="background:black;height:100vh;"></div>
+    `;
+      }, 5000);
+    }
     if (action === "Sleep") alert("Sleep Mode Activated");
   });
 });
